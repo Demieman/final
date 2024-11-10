@@ -13,7 +13,7 @@ class RegisteredUserController extends Controller
     {
         // Redirect to dashboard if already logged in
         if (auth()->check()) {
-            return redirect()->route('dashboard');
+            return redirect()->route('Dashboard');
         }
 
         return view('auth.registration');

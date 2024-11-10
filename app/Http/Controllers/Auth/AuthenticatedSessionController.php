@@ -13,7 +13,7 @@ class AuthenticatedSessionController extends Controller
     {
         // Redirect to dashboard if already logged in
         if (auth()->check()) {
-            return redirect()->route('dashboard');
+            return redirect()->route('Dashboard');
         }
 
         return view('auth.login');
@@ -28,7 +28,7 @@ class AuthenticatedSessionController extends Controller
 
         if (Auth::attempt($request->only('email', 'password'))) {
             // Redirect to the dashboard after login
-            return redirect()->route('dashboard');
+            return redirect()->route('Dashboard');
         }
 
         return back()->withErrors([

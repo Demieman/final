@@ -1,6 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
+<head>
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <script src="{{ asset('js/script.js') }}" defer></script>
+</head>
 <div class="container">
     <h2>Register</h2>
     <form method="POST" action="{{ route('register') }}">
