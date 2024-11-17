@@ -7,6 +7,7 @@ use App\Http\Controllers\PageController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\ShoppingCartController;
 // Registration routes
 Route::middleware('guest')->group(function () {
     Route::get('/register', [RegisterController::class, 'create'])
@@ -38,3 +39,5 @@ Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
 Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
 Route::get('/about', [PageController::class, 'about'])->name('about');
 Route::get('/contact', [PageController::class, 'contact'])->name('contact');
+Route::get('/cart', [ShoppingCartController::class, 'showCart'])->name('cart.show');
+Route::post('/cart/add/{id}', [ShoppingCartController::class, 'addToCart'])->name('cart.add');

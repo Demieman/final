@@ -14,6 +14,7 @@ class ProductController extends Controller
 
         return view('products.index', compact('products')); // Return the products view
     }
+
     public function store(Request $request)
     {
         // Validate the incoming request data
@@ -21,7 +22,8 @@ class ProductController extends Controller
             'name' => 'required|string|max:255',
             'price' => 'required|numeric',
             'description' => 'nullable|string',
-            'stock' => 'required|integer'
+            'stock' => 'required|integer',
+            'image_url' => 'required|url' // Add validation for the image URL
         ]);
 
         // Create a new product
@@ -30,6 +32,7 @@ class ProductController extends Controller
             'price' => $request->price,
             'description' => $request->description,
             'stock' => $request->stock,
+            'image_url' => $request->image_url, // Include the image URL
         ]);
 
         // Redirect back to the products page with a success message
