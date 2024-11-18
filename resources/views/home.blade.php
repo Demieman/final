@@ -31,6 +31,27 @@
     
     <section>
         <p>Explore our wide range of products.</p>
+        <h2>Latest Products</h2>
+        
+        <div class="product-grid">
+            @if($products->count())
+                @foreach ($products as $product)
+                    <div class="product-item">
+                        <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}" class="product-image">
+                        <h3>{{ $product->name }}</h3>
+                        <p>{{ $product->description }}</p>
+                        <p>Price: ${{ number_format($product->price, 2) }}</p>
+                        <a href="{{ route('products.show', $product->id) }}" class="view-button">View Details</a>
+                    </div>
+                @endforeach
+            @else
+                <p>No products available at the moment.</p>
+            @endif
+        </div>
+
+        <div class="pagination">
+            {{ $products->links() }} <!-- Pagination links -->
+        </div>
     </section>
 
     <style>
@@ -77,6 +98,46 @@
         section {
             margin-top: 20px;
             text-align: center;
+        }
+
+        .product-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 20px 0;
+        }
+
+        .product-item {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 10px;
+            margin: 10px;
+            width: 200px;
+            text-align: center;
+        }
+
+        .product-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+
+        .view-button {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 5px 10px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        .view-button:hover {
+            background-color: #0056b3;
+        }
+
+        .pagination {
+            margin-top: 20px;
         }
     </style>
 @endsection

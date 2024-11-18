@@ -10,9 +10,8 @@ class ProductController extends Controller
     public function index()
     {
         // Fetch all products from the database
-        $products = Product::all();
-
-        return view('products.index', compact('products')); // Return the products view
+        $products = Product::latest()->paginate(10); // Adjust the number of items per page as needed
+    return view('home', compact('products'));
     }
 
     public function store(Request $request)
