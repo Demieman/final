@@ -2,22 +2,27 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product; // Ensure this import is present
 use Illuminate\Http\Request;
 
 class PageController extends Controller
 {
     public function home()
     {
-        return view('home'); // Return the home view
+      // Fetch all products
+      $products = Product::all(); // Use this to get all products
+        
+      // Pass products to the view
+      return view('home', compact('products'));
     }
 
     public function about()
     {
-        return view('about'); // You will create this view
+        return view('about');
     }
 
     public function contact()
     {
-        return view('contact'); // You will create this view
+        return view('contact');
     }
 }

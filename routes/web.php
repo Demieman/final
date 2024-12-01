@@ -8,6 +8,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ShoppingCartController;
+
 // Registration routes
 Route::middleware('guest')->group(function () {
     Route::get('/register', [RegisterController::class, 'create'])
@@ -35,6 +36,8 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/', [PageController::class, 'home'])->name('home');
 Route::get('/products', [ProductController::class, 'index'])->name('products.index');
 Route::post('/products', [ProductController::class, 'store'])->name('products.store');
+// Route for showing a single product
+Route::get('/products/{id}', [ProductController::class, 'show'])->name('products.show');
 Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
 Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
 Route::get('/about', [PageController::class, 'about'])->name('about');

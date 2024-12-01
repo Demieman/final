@@ -29,31 +29,30 @@
         </nav>
     </header>
     
-    <section>
-        <p>Explore our wide range of products.</p>
-        <h2>Latest Products</h2>
-        
-        <div class="product-grid">
-            @if($products->count())
-                @foreach ($products as $product)
-                    <div class="product-item">
-                        <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}" class="product-image">
-                        <h3>{{ $product->name }}</h3>
-                        <p>{{ $product->description }}</p>
-                        <p>Price: ${{ number_format($product->price, 2) }}</p>
-                        <a href="{{ route('products.show', $product->id) }}" class="view-button">View Details</a>
-                    </div>
-                @endforeach
-            @else
-                <p>No products available at the moment.</p>
-            @endif
-        </div>
+   <section>
+    <p>Explore our wide range of products.</p>
+    <h2>Latest Products</h2>
+    
+    <div class="product-grid">
+        @if(isset($products) && $products->count())
+            @foreach ($products as $product)
+                <div class="product-item">
+                    <img src="{{ asset('storage/' . $product->image_url) }}" alt="{{ $product->name }}" class="product-image">
+                    <h3>{{ $product->name }}</h3>
+                    <p>{{ $product->description }}</p>
+                    <p>Price: ${{ number_format($product->price, 2) }}</p>
+                    <a href="{{ route('products.show', $product->id) }}" class="view-button">View Details</a>
+                </div>
+            @endforeach
+        @else
+            <p>No products available at the moment.</p>
+        @endif
+    </div>
 
-        <div class="pagination">
-            {{ $products->links() }} <!-- Pagination links -->
-        </div>
-    </section>
-
+    <div class="pagination">
+        {{ $products->links() }} <!-- Pagination links -->
+    </div>
+</section>
     <style>
         header {
             background-color: #f8f9fa;
